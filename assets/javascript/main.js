@@ -9,6 +9,13 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var database = firebase.database();
+// Initial Values
+var firstName = "";
+var lastName = "";
+var startDate = "";
+var salary = "";
+
 function renderTable() {
   var tRow = $("<tr>");
 
