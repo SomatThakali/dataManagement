@@ -16,6 +16,10 @@ var lastName = "";
 var startDate = "";
 var salary = "";
 
+$("#add-employee").on("click", function(event) {
+  // Don't refresh the page!
+  event.preventDefault();
+});
 function renderTable() {
   var tRow = $("<tr>");
 
