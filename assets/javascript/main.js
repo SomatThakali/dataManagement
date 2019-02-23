@@ -1,5 +1,3 @@
-console.log("js loaded");
-
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDEkoRlOGC4mpHVyHu0j75nKIVs7C8ezkE",
@@ -57,11 +55,6 @@ $("#employee-form").on("submit", function(event) {
 database.ref().on(
   "child_added",
   function(snapshot) {
-    console.log(snapshot.val());
-    console.log(snapshot.val().firstName);
-    console.log(snapshot.val().lastName);
-    console.log(snapshot.val().salary);
-    console.log(snapshot.val().startDate);
     renderRow(snapshot.val());
   },
   function(errorObject) {
@@ -73,10 +66,10 @@ database.ref().on(
 function makeFormEmpty() {
   $("#firstName").val("");
   $("#lastName").val("");
-  $("#salary").val("");
+  //   $("#salary").val("");
   $("#startDate").val("");
   $("#degination").val("");
-  $("#email").val("");
+  //   $("#email").val("");
 }
 
 function renderRow(obj) {
@@ -103,3 +96,18 @@ function renderRow(obj) {
   // Append the table row to the table body
   $("tbody").append(tRow);
 }
+
+// filter function
+$("#myInput").on("keyup", function() {
+  var value = $(this)
+    .val()
+    .toUpperCase();
+  $("#myTable tr").filter(function() {
+    $(this).toggle(
+      $(this)
+        .text()
+        .toUpperCase()
+        .indexOf(value) > -1
+    );
+  });
+});
