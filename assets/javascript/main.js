@@ -19,7 +19,24 @@ var salary = "";
 $("#add-employee").on("click", function(event) {
   // Don't refresh the page!
   event.preventDefault();
+
+  firstName = $("#firstName")
+    .val()
+    .trim();
+  lastName = $("#firstName")
+    .val()
+    .trim();
+  salary = $("#salary")
+    .val()
+    .trim();
+  database.ref().set({
+    name: name,
+    email: email,
+    age: age,
+    comment: comment
+  });
 });
+
 function renderTable() {
   var tRow = $("<tr>");
 
