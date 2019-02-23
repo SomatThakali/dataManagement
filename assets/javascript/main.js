@@ -1,3 +1,14 @@
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDEkoRlOGC4mpHVyHu0j75nKIVs7C8ezkE",
+  authDomain: "employee-data-management-f4e60.firebaseapp.com",
+  databaseURL: "https://employee-data-management-f4e60.firebaseio.com",
+  projectId: "employee-data-management-f4e60",
+  storageBucket: "",
+  messagingSenderId: "381444564591"
+};
+firebase.initializeApp(config);
+
 function renderTable() {
   var tRow = $("<tr>");
 
