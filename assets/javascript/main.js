@@ -1,3 +1,5 @@
+console.log("js loaded");
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDEkoRlOGC4mpHVyHu0j75nKIVs7C8ezkE",
@@ -15,41 +17,89 @@ var firstName = "";
 var lastName = "";
 var startDate = "";
 var salary = "";
+var degination = "";
+var email = "";
 
-$("#add-employee").on("click", function(event) {
+$("#employee-form").on("submit", function(event) {
+  console.log("DEBUG", " submit button clicked");
   // Don't refresh the page!
   event.preventDefault();
 
   firstName = $("#firstName")
     .val()
     .trim();
-  lastName = $("#firstName")
+  lastName = $("#lastName")
     .val()
     .trim();
   salary = $("#salary")
     .val()
     .trim();
-  database.ref().set({
-    name: name,
-    email: email,
-    age: age,
-    comment: comment
+  startDate = $("#startDate")
+    .val()
+    .trim();
+  degination = $("#degination")
+    .val()
+    .trim();
+  email = $("#email")
+    .val()
+    .trim();
+  database.ref().push({
+    firstName: firstName,
+    lastName: lastName,
+    salary: salary,
+    startDate: startDate,
+    degination: degination,
+    email: email
   });
+  makeFormEmpty();
 });
 
-function renderTable() {
+database.ref().on(
+  "child_added",
+  function(snapshot) {
+    console.log(snapshot.val());
+    console.log(snapshot.val().firstName);
+    console.log(snapshot.val().lastName);
+    console.log(snapshot.val().salary);
+    console.log(snapshot.val().startDate);
+    renderRow(snapshot.val());
+  },
+  function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  }
+);
+
+// helper functions
+function makeFormEmpty() {
+  $("#firstName").val("");
+  $("#lastName").val("");
+  $("#salary").val("");
+  $("#startDate").val("");
+  $("#degination").val("");
+  $("#email").val("");
+}
+
+function renderRow(obj) {
   var tRow = $("<tr>");
 
   // Methods run on jQuery selectors return the selector they we run on
 
-  var numberTd = $("<td>").text(number);
-  var firstNameTd = $("<td>").text(firstName);
-  var lastNameTd = $("<td>").text(lastName);
-  var startDateTd = $("<td>").text(startDate);
-  var salaryTd = $("<td>").text(salary);
+  var firstNameTd = $("<td id='firstName-display'>").text(obj.firstName);
+  var lastNameTd = $("<td id='lastName-display'>").text(obj.lastName);
+  var startDateTd = $("<td id='startDate-display'>").text(obj.startDate);
+  var salaryTd = $("<td id='salary-display'>").text(obj.salary);
+  var deginationTd = $("<td id='degination-display'>").text(obj.degination);
+  var emailTd = $("<td id='email-display'>").text(obj.email);
 
   // Append the newly created table data to the table row
-  tRow.append(numberTd, firstNameTd, lastNameTd, startDateTd, salaryTd);
+  tRow.append(
+    firstNameTd,
+    lastNameTd,
+    startDateTd,
+    salaryTd,
+    deginationTd,
+    emailTd
+  );
   // Append the table row to the table body
   $("tbody").append(tRow);
 }

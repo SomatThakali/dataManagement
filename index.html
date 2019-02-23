@@ -28,21 +28,23 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Employee Id</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Start Date</th>
             <th scope="col">Salary</th>
+            <th scope="col">Degination</th>
+            <th scope="col">email</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td>1</td>
             <td>Somat</td>
             <td>Thakali</td>
-            <td>2018/08/06</td>
+            <td>2018-08-06</td>
             <td>$ 700000</td>
+            <td>Sr. Developer</td>
+            <td>somathakali@columbia.edu</td>
           </tr>
           <!-- Insert additional movie rows here -->
         </tbody>
@@ -50,34 +52,60 @@
     </div>
 
     <div class="container">
-      Enter the Information of the Employee
-      <form>
+      <form id="employee-form">
         <div class="form-group">
           <label for="exampleInputEmail1">First Name</label>
-          <input type="text" class="form-control" id="firstName" />
-          <small id="emailHelp" class="form-text text-muted"></small>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            required="required"
+          />
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Last Name</label>
-          <input type="text" class="form-control" id="lastName" />
-          <small id="emailHelp" class="form-text text-muted"></small>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            required="required"
+          />
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Start Date</label>
-          <input type="date" class="form-control" id="startDate" />
-          <small id="emailHelp" class="form-text text-muted"></small>
+          <input
+            type="date"
+            class="form-control"
+            id="startDate"
+            required="required"
+          />
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Salary</label>
-          <input type="text" class="form-control" id="salary" />
-          <small id="emailHelp" class="form-text text-muted"></small>
+          <input
+            type="text"
+            value="$ "
+            class="form-control"
+            id="salary"
+            required="required"
+          />
         </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Degination</label>
+          <input type="text" class="form-control" id="degination" />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="text" class="form-control" value=".com" id="email" />
+        </div>
+
         <button class="btn btn-primary" id="add_employee" type="submit">
           Submit form
         </button>
       </form>
     </div>
 
-    <script type="text" src="./assets/javascript/main.js"></script>
+    <script src="./assets/javascript/main.js"></script>
   </body>
 </html>
